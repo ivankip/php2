@@ -9,5 +9,6 @@
         <div><?=$article['text'];?></div>
     </article>
     <?php endforeach; ?>
+    <br /><a href="/view/add_article.php">Добавить новость</a>
 </body>
 </html>

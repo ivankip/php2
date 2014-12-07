@@ -22,7 +22,7 @@ function DBQuery($sql)
     $res = mysql_query($sql);
     if (!$res) {
         echo mysql_error();
-        return [];
+        return false;
     }
 
     $ret = [];
@@ -31,4 +31,15 @@ function DBQuery($sql)
         $ret[] = $row;
     }
     return $ret;
+}
+
+function DBUpload ($sql)
+{
+    DBConnect();
+    $res = mysql_query($sql);
+    if (!$res) {
+        echo mysql_error();
+        return false;
+    }
+    return true;
 }
