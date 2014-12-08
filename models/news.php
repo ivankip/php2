@@ -17,3 +17,11 @@ function News_insert ($new_article)
     INSERT INTO news (title, text)
     VALUES ('$title', '$text')");
 }
+
+function News_getId($id)
+{
+    return DBQuery("
+    SELECT * FROM news
+    WHERE id='$id'
+    ");
+}

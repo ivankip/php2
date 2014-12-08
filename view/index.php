@@ -7,6 +7,7 @@
     <article>
         <h1><?=$article['title'];?></h1>
         <div><?=$article['text'];?></div>
+        <a href="../read_article.php?id=<?php echo $article['id']?>">Читать полностью</a>
     </article>
     <?php endforeach; ?>
     <br /><a href="/view/add_article.php">Добавить новость</a>

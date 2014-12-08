@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Новости</title>
+    <title>Добавить новость</title>
 </head>
 <body>
     <form action="../add_news.php" method="post">
