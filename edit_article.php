@@ -5,5 +5,5 @@ require_once 'models/news.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $article = News_getId($id);
-    include 'view/read_article.php';
+    include 'view/edit_article.php';
 }
