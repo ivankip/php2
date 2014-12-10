@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../functions/db.php';
 
+//Функция получения всех новостей
 function News_getAll()
 {
     return DBQuery("
@@ -9,6 +10,7 @@ function News_getAll()
     ");
 }
 
+//Фуенкция добавления новой новости
 function News_insert ($new_article)
 {
     $title = $new_article['title'];
@@ -18,6 +20,7 @@ function News_insert ($new_article)
     VALUES ('$title', '$text')");
 }
 
+//Функция получения новости по id
 function News_getId($id)
 {
     return DBQuery("

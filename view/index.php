@@ -10,6 +10,3 @@
         <a href="../read_article.php?id=<?php echo $article['id']?>">Читать полностью</a>
     </article>
     <?php endforeach; ?>
-    <br /><a href="/view/add_article.php">Добавить новость</a>
-</body>
-</html>
