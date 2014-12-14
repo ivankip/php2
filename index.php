@@ -2,7 +2,8 @@
 
 require_once __DIR__ . '/models/news.php';
 
-$news = News_getAll();
+$ob_news = new News;
+$news = $ob_news->news_getAll();
 
-include 'view/index.php';
-include 'view/add_article.php';
+include __DIR__ . '/view/index.php';
+include __DIR__ . '/view/add_article.php';

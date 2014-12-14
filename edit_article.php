@@ -1,9 +1,10 @@
 <?php
 
-require_once 'models/news.php';
+require_once __DIR__ . '/models/news.php';
 
 if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];
-    $article = News_getId($id);
-    include 'view/edit_article.php';
+    $news = new News();
+    $article = $news->news_getId($id);
+    include __DIR__ . '/view/edit_article.php';
 }

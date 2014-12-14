@@ -1,45 +1,40 @@
 <?php
 
-function config()
+class DBWork
 {
-    return include __DIR__ . '/../config.php';
-}
-
-function DBConnect()
-{
-    $config = config();
-    mysql_connect(
-        $config['db']['host'],
-        $config['db']['user'],
-        $config['db']['password']
-    );
-    mysql_select_db($config['db']['dbname']);
-}
-
-function DBQuery($sql)
-{
-    DBConnect();
-    $res = mysql_query($sql);
-    if (!$res) {
-        echo mysql_error();
-        return false;
+    private function config() {
+        return include __DIR__ . '/../config.php';
     }
-
-    $ret = [];
-    while ($row = mysql_fetch_assoc($res))
+    public function __construct() {
+        $config = $this->config();
+        mysql_connect(
+            $config['db']['host'],
+            $config['db']['user'],
+            $config['db']['password']
+        );
+        mysql_select_db($config['db']['dbname']);
+    }
+    protected function DBQuery($sql)
     {
-        $ret[] = $row;
+        $res = mysql_query($sql);
+        if (!$res) {
+            echo mysql_error();
+            return false;
+        }
+        $ret = [];
+        while ($row = mysql_fetch_assoc($res))
+        {
+            $ret[] = $row;
+        }
+        return $ret;
     }
-    return $ret;
-}
-
-function DBUpload ($sql)
-{
-    DBConnect();
-    $res = mysql_query($sql);
-    if (!$res) {
-        echo mysql_error();
-        return false;
+    protected function DBUpload ($sql)
+    {
+        $res = mysql_query($sql);
+        if (!$res) {
+            echo mysql_error();
+            return false;
+        }
+        return true;
     }
-    return true;
 }
