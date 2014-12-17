@@ -17,6 +17,7 @@ class View extends Storage
         ob_start();
         include $this->path . $template;
         $ret = ob_get_contents();
+        ob_end_clean();
         return $ret;
     }
 }

@@ -12,6 +12,7 @@ if (isset($_GET['id'])) {
     $article = $news->news_getId($id);
     $view->article = $article;
     $html = $view->display('edit_article.php');
+    echo $html;
 }
 else {
     echo 'Не выбрана новость' . '<br />';

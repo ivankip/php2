@@ -12,4 +12,5 @@ if (isset($_GET['id'])) {
     $article = $news->news_getId($id);
     $view->article = $article;
     $html = $view->display('read_article.php');
+    echo $html;
 }
