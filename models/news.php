@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../functions/db.php';
+require_once __DIR__ . '/../classes/view.php';
 
 abstract class Article extends DBWork {
 

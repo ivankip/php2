@@ -11,3 +11,5 @@
         <a href="../read_article.php?id=<?php echo $article['id']?>">Читать полностью</a>
     </article>
     <?php endforeach; ?>
+</body>
+</html>

@@ -5,5 +5,3 @@
         <textarea name="text" cols="45" rows="10" placeholder="Текст статьи"></textarea><br />
         <input type="submit" value="Сохранить" />
     </form>
-</body>
-</html>

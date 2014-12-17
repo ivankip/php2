@@ -3,7 +3,9 @@
 require_once __DIR__ . '/models/news.php';
 
 $ob_news = new News;
-$news = $ob_news->news_getAll();
+$template_path = __DIR__ . '/templates/';
 
-include __DIR__ . '/view/index.php';
-include __DIR__ . '/view/add_article.php';
+$view = new View($template_path);
+
+$view->news = $ob_news->news_getAll();
+$html = $view->display('index.php');
