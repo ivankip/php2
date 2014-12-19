@@ -1,12 +1,10 @@
 <?php
 
-require_once __DIR__ . '/models/news.php';
+require 'boot.php';
 
-$ob_news = new News;
-$template_path = __DIR__ . '/templates/';
+$route = $_GET['route'];
+$routeParts = explode('/', $route);
+$controllerClassName = ucfirst($routeParts[0]) . 'Controller';
 
-$view = new View($template_path);
-
-$view->news = $ob_news->news_getAll();
-$html = $view->display('index.php');
-echo $html;
+$controller = new $controllerClassName;
+$controller->action($routeParts[1]);

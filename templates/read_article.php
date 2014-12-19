@@ -8,6 +8,6 @@
         <h1><?=$article['title'];?></h1>
         <div><?=$article['text'];?></div>
     </article>
-    <br /><a href="../edit_article.php?id=<?=$article['id'];?>">Редактировать</a>
+    <br /><a href="../index.php?route=news/edit&id=<?=$article['id'];?>">Редактировать</a>
 </body>
 </html>
