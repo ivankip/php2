@@ -20,7 +20,7 @@ class NewsController
         $ob_news = new News;
         $view = new View(self::Template_path);
 
-        $view->article = $ob_news->news_getOne($_GET['id']);
+        $article = $view->article = $ob_news->news_getOne($_GET['id'])[0];
         $html = $view->display('read_article.php');
         echo $html;
     }
@@ -35,7 +35,7 @@ class NewsController
             header('Location: index.php?route=news/all');
         }
 
-        $view->article = $ob_news->news_getOne($_GET['id']);
+        $view->article = $ob_news->news_getOne($_GET['id'])[0];
         $html = $view->display('edit_article.php');
         echo $html;
     }

@@ -1,30 +1,26 @@
 <?php
 
-abstract class AbstractModel {
+abstract class AbstractModel
+{
 
     static protected $table;
 
     static function findAll()
     {
         $sql = 'SELECT * FROM ' . static::$table;
-        return DbConnection::query($sql);
+        $db = new DbConnection();
+        return $db->query($sql);
     }
 
     static function findByPk($id)
     {
-        $sql = 'SELECT * FROM ' . static::$table . 'WHERE id=:id';
-        return DbConnection::queryPk($sql, $id);
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
+        $db = new DbConnection();
+        $options = [
+            'id' => $id
+        ];
+        return $db->query($sql, $options);
     }
 
-    static function insert($title, $text)
-    {
-        $sql = 'INSERT INTO ' . static::$table . '(title, text) VALUES (' . $title . ', ' . $text . ')';
-        return DbConnection::query($sql);
-    }
+}
 
-    static function edit($id, $title, $text)
-    {
-        $sql = 'UPDATE ' . static::$table . 'SET title=' . $title . ', text=' . $text . ' WHERE id=:id';
-        return DbConnection::queryPk($sql, $id);
-    }
-} 

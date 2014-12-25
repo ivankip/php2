@@ -1,37 +1,40 @@
 <?php
 
-class DbConnection {
+class DbConnection
+{
 
-    static private function config()
+    protected $pdo;
+
+    public function __construct()
+    {
+        try {
+            $config = self::config();
+            $dsn = 'mysql:dbname=' . $config['db']['dbname'] . ';host=' . $config['db']['host'];
+            $user = $config['db']['user'];
+            $password = $config['db']['password'];
+
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage());
+        }
+
+        $this->pdo = new PDO($dsn, $user, $password);
+    }
+
+    private function config()
     {
         return include __DIR__ . '/../config.php';
     }
 
-    static private function getConnection()
+    public function query($sql, $options = [])
     {
-
-        $config = self::config();
-        $dsn = 'mysql:dbname=' . $config['db']['dbname'] . ';host=' . $config['db']['host'];
-        $user = $config['db']['user'];
-        $password = $config['db']['password'];
-        return new PDO($dsn, $user, $password);
-
-    }
-
-    static function query($sql)
-    {
-        $dbh = static::getConnection();
-        $sth = $dbh->prepare($sql);
+        $sth = $this->pdo->prepare($sql);
         $sth->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $sth->execute();
+        if (!empty($options)) {
+            $sth->execute($options);
+        } else {
+            $sth->execute();
+        }
         return $sth->fetchAll();
     }
-    static function queryPk ($sql, $id)
-    {
-        $dbh = static::getConnection();
-        $sth = $dbh->prepare($sql);
-        $sth->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $sth->execute(['id' => $id]);
-        return $sth->fetchAll();
-    }
+
 }
